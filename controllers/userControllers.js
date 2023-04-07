@@ -61,12 +61,20 @@ let queryData=async (req,res)=>{
 		],
 		group:['email','name'],
 		limit:2,
-		offset:2
-
 	})
 	 
-
 	//findOne,findAll
+}
+
+const finderData=async(req,res)=>{
+	// let data=await User.findOne({});
+	let data=await User.findAndCountAll({
+		where:{
+			email:"hamza@gmail.com"
+		}
+	})
+
+
 }
 
 module.exports={addUser,crudOperations,queryData} 

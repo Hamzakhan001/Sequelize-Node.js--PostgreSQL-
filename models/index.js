@@ -21,6 +21,7 @@ db.Sequelize=Sequelize;
 db.sequelize=sequelize;
 
 db.users=require("./users")(sequelize,DataTypes);
+db.posts=require('./post')(sequelize,DataTypes);
 db.sequelize.sync()
 .then(()=>{
 	console.log("user created ")
