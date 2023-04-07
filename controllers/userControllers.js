@@ -35,14 +35,35 @@ let crudOperations=async (req,res)=>{
 let queryData=async (req,res)=>{
 	await User.create({name:"hamza",email:"helloworl@gmail.com",gender:"male"},{fields:["email"]})
 
+	// let data=await User.findAll({
+	// 	attributes:[
+	// 		'name',
+	// 		['email','emailID'],
+	// 		'gender',
+	// 		[Sequelize.fn('Count',Sequelize.col('email'))]
+	// 	]
+	// });
+
 	let data=await User.findAll({
-		attributes:[
-			'name',
-			['email','emailID'],
-			'gender',
-			[Sequelize.fn('Count',Sequelize.col('email'))]
-		]
-	});
+		// attributes:{
+		// 	exclude:['create_at','modified_at']
+		// }
+		where:{
+			id:{
+
+			},
+			email:{
+
+			}
+		},
+		order:[
+			['name','DESC']
+		],
+		group:['email','name'],
+		limit:2,
+		offset:2
+
+	})
 	 
 
 	//findOne,findAll
