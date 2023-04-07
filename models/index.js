@@ -27,5 +27,8 @@ db.sequelize.sync()
 	console.log("user created ")
 })
 
+ 
+db.users.hasOne(db.posts,{foreinKey:'user_id'});
+db.posts.belongsTo(db.users,{foreinKey:'user_id'});
 
 module.exports=db

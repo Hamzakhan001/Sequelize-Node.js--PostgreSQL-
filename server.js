@@ -10,6 +10,8 @@ var userController=require("./controllers/userControllers")
 app.get("/add",userController.addUser);
 app.get("/crud",userController.crudOperations);
 app.get("/query",userController.queryData);
+app.get("/oneToOne",userController.oneToOne);
+app.get("/belongTo",userController.belongsTo);
 
 
 

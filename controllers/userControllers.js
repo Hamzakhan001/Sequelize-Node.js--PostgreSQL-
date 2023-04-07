@@ -1,6 +1,7 @@
 
 const db=require('../models');
 const User=db.users;
+const Post=db.posts;
 const {Sequelize}=require("sequelize");
 
 
@@ -28,7 +29,6 @@ let crudOperations=async (req,res)=>{
 		{name:"hamza",email:"hamzawebdev@gmail.como",gender:"male"},
 		{name:"hamza",email:"hamzawebdev@gmail.como",gender:"male"},
 	])
-
 	//findOne,findAll
 }
 
@@ -53,7 +53,6 @@ let queryData=async (req,res)=>{
 
 			},
 			email:{
-
 			}
 		},
 		order:[
@@ -73,8 +72,30 @@ const finderData=async(req,res)=>{
 			email:"hamza@gmail.com"
 		}
 	})
-
-
 }
 
-module.exports={addUser,crudOperations,queryData} 
+
+const oneToOne=async(req,res)=>{
+	const data=await User.findAll({
+		include:Post,
+		where:
+		{id:8}
+	});
+}
+
+
+const belongsTo=async(req,res)=>{
+	const data=await Post.findAll({
+		attributes:['content','title'],
+		include:[
+			{
+				model:User,
+				attributes:['name','email']
+			}
+		],
+		where:
+		{id:8}
+	});
+}
+
+module.exports={addUser,crudOperations,queryData,belongsTo} 
